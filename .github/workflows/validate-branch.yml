@@ -1,0 +1,75 @@
+name: Validate Branch and Environment
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: 'Environment to validate again'
+        required: true
+        type: string
+    outputs:
+      is_valid:
+        description: 'Whether the branch-environment combination is valid'
+        value: ${{ jobs.validate.outputs.is_valid }}
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    outputs:
+      is_valid: ${{ steps.check.outputs.is_valid }}
+    steps:
+      - name: Validate Branch and Environment
+        id: check
+        run: |
+          set -euo pipefail
+
+          BRANCH="${{ github.ref_name }}"
+          ENV="${{ inputs.environment }}"
+
+          echo "Current branch: $BRANCH"
+          echo "Requested environment: $ENV"
+
+          is_valid="false"
+
+          # Feature branches (feature/*) -> dev or test
+          if [[ "$BRANCH" == feature/* ]]; then
+            if [[ "$ENV" == "dev" || "$ENV" == "test" ]]; then
+              echo "Feature branch can deploy to dev/test"
+              is_valid="true"
+            else
+              echo "Feature branches can only deploy to dev or test environments"
+              is_valid="false"
+            fi
+
+          # Develop branch -> uat/dev/test
+          elif [[ "$BRANCH" == "develop" ]]; then
+            if [[ "$ENV" == "uat" || "$ENV" == "dev" || "$ENV" == "test" ]]; then
+              echo "Develop branch can deploy to uat/dev/test"
+              is_valid="true"
+            else
+              echo "Develop branch can only deploy to uat, dev, test environments"
+              is_valid="false"
+            fi
+
+          # Release -> prd/uat/dev/test
+          elif [[ "$BRANCH" == "release" ]]; then
+            if [[ "$ENV" == "prd" || "$ENV" == "uat" || "$ENV" == "dev" || "$ENV" == "test" ]]; then
+              echo "Release branch can deploy to prd/uat/dev/test"
+              is_valid="true"
+            else
+              echo "Release branch can only deploy to prd, uat, test, dev environments"
+              is_valid="false"
+            fi
+
+          else
+            echo "Unknown branch pattern: $BRANCH"
+            is_valid="false"
+          fi
+
+          # Export output for workflow callers
+          echo "is_valid=$is_valid" >> "$GITHUB_OUTPUT"
+
+          # Fail the step for invalid combinations so callers know it's not allowed
+          if [[ "$is_valid" != "true" ]]; then
+            exit 1
+          fi
