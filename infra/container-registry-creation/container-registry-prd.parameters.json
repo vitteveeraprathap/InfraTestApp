@@ -6,7 +6,7 @@
     "location": { "value": "westus2" },
     "sku": { "value": "Basic" },
     "adminUserEnabled": { "value": false },
-    "logAnalyticsName": { "value": "law-bot-prd-wus2-001" },
+    "logAnalyticsName": { "value": "law-btt-prd-wus2-001" },
     "diagnosticSettingName": { "value": "diag-crbotprdwus2001" },
     "tags": {
       "value": {

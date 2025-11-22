@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "logAnalyticsName": {
-      "value": "law-btt-sbx-wus2-001"
+      "value": "law-btt-test-wus2-001"
     },
     "location": {
       "value": "westus2"
@@ -13,8 +13,8 @@
     },
     "tags": {
       "value": {
-        "name": "law-btt-sbx-wus2-001",
-        "environment": "sandbox",
+        "name": "law-btt-test-wus2-001",
+        "environment": "test",
         "department": "ntt gdc architecture",
         "cost-center": "510",
         "technical-manager": "veera",
