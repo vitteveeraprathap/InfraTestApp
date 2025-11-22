@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "keyVaultName": {
+      "value": "kv-btt-test-wus2-002"
+    },
+    "location": {
+      "value": "westus2"
+    },
+    "adminObjectId": {
+      "value": "9d90a24b-e8a7-4b44-8ac5-ea65f0a546a8"
+    },
+    "logAnalyticsName": {
+      "value": "law-btt-test-wus2-002"
+    },
+    "diagnosticSettingName": {
+      "value": "diag-kv-btt-test-wus2-002"
+    },
+    "tags": {
+      "value": {
+        "name": "kv-btt-test-wus2-002",
+        "environment": "test",
+        "department": "ntt gdc architecture",
+        "cost-center": "510",
+        "technical-manager": "Mark Pope",
+        "application": "btt"
+      }
+    }
+  }
+}
