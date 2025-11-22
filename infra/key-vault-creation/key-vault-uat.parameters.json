@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "keyVaultName": {
-      "value": "kv-iiot-uat-wus2-002"
+      "value": "kv-bot-uat-wus2-002"
     },
     "location": {
       "value": "westus2"
@@ -12,19 +12,19 @@
       "value": "62d28f57-80f0-45e6-aee7-b21edfc15caf"
     },
     "logAnalyticsName": {
-      "value": "law-iiot-uat-wus2-001"
+      "value": "law-btt-uat-wus2-001"
     },
     "diagnosticSettingName": {
-      "value": "diag-kv-iiot-uat-wus2-001"
+      "value": "diag-kv-bot-uat-wus2-001"
     },
     "tags": {
       "value": {
-        "name": "kv-iiot-uat-wus2-001",
+        "name": "kv-bot-uat-wus2-001",
         "environment": "uat",
         "department": "ntt gdc architecture",
         "cost-center": "510",
         "technical-manager": "Mark Pope",
-        "application": "iiot"
+        "application": "bot"
       }
     }
   }
